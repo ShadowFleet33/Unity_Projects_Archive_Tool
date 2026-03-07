@@ -122,6 +122,25 @@ function Remove-TestProjects {
     Write-Host "All generated test projects deleted." -ForegroundColor Green
 }
 
+function Start-ArchiveTool {
+
+    $toolPath = Join-Path $scriptDir "UnityProjectsArchiveTool.ps1"
+
+    if (!(Test-Path $toolPath)) {
+
+        Write-Host ""
+        Write-Host "Archive tool not found!" -ForegroundColor Red
+        Write-Host "Expected file:" -ForegroundColor Yellow
+        Write-Host $toolPath
+        return
+    }
+
+    Write-Host ""
+    Write-Host "Launching UnityProjectsArchiveTool..." -ForegroundColor Green
+
+    & $toolPath
+}
+
 # ------------------------------------------------------------
 # Menu
 # ------------------------------------------------------------
@@ -130,7 +149,8 @@ function Show-Menu {
     Write-Host ""
     Write-Host "1 - Generate Test Projects" -ForegroundColor Cyan
     Write-Host "2 - Delete Generated Projects" -ForegroundColor Yellow
-    Write-Host "3 - Exit" -ForegroundColor DarkGray
+    Write-Host "3 - Run Archive Tool" -ForegroundColor Green
+    Write-Host "4 - Exit" -ForegroundColor DarkGray
 }
 
 # ------------------------------------------------------------
@@ -149,7 +169,9 @@ while ($true) {
 
         "2" { Remove-TestProjects }
 
-        "3" { break }
+        "3" { Start-ArchiveTool }
+
+        "4" { break }
 
         default {
             Write-Host "Invalid selection." -ForegroundColor Red
