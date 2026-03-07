@@ -1,9 +1,10 @@
 # ============================================================
-# Unity Parallel Maintenance Tool
+# Unity Projects Archive Tool
 # ============================================================
 
 # Get script directory
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
+$ScriptVersion = @(0, 3, 4)
 
 # ------------------------------------------------------------
 # Function: Universal Wait Function
@@ -564,7 +565,7 @@ function Initialize-ScriptEnvironment {
 function Exit-Tool {
 
     Write-Host ""
-    Write-Host "Closing Unity Parallel Maintenance Tool..." -ForegroundColor Cyan
+    Write-Host "Closing Unity Projects Archive Tool..." -ForegroundColor Cyan
     Write-Host ""
 
     exit
@@ -572,9 +573,11 @@ function Exit-Tool {
 
 function Show-Header {
     Write-Host ""
+    $versionString = $ScriptVersion -join "."
     Write-Host "============================================================" -ForegroundColor DarkCyan
-    Write-Host "Unity Parallel Maintenance Tool" -ForegroundColor Cyan
+    Write-Host "Unity Projects Archive Tool" -ForegroundColor Cyan
     Write-Host "Root directory: $scriptDir" -ForegroundColor Gray
+    Write-Host "Version: $versionString" -ForegroundColor Cyan
     Write-Host "============================================================" -ForegroundColor DarkCyan
 }
 
