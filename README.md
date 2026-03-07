@@ -1,7 +1,7 @@
 # UnityProjectsArchiveTool
 
 <p align="left">
-  <img src="docs/banner.png" width="550", height="250"/>
+  <img src="Assets/banner.png" width="550", height="250"/>
 </p>
 
 ![PowerShell](https://img.shields.io/badge/PowerShell-5.1%2B%20%7C%207-blue?logo=powershell&logoColor=white)
