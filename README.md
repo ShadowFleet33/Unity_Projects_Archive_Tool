@@ -197,22 +197,22 @@ UnityProjectsArchiveTool/
 
 ## Possible Future Improvements
 
-| Feature                    | Description                                                                     |
-| -------------------------- | ------------------------------------------------------------------------------- |
-| Parallel Project Scanning  | Scan multiple Unity projects simultaneously to significantly improve speed.     |
-| Asset Deduplication        | Detect identical assets across projects and store only one copy in the archive. |
-| Interactive CLI Menu       | Arrow-key navigation with highlighted selections.                               |
-| Live Progress Bars         | Real-time progress display when scanning or archiving projects.                 |
-| Disk Usage Visualization   | Show graphical or color-coded disk usage statistics.                            |
-| Archive Verification       | Verify integrity of created archives after compression.                         |
-| Config File Support        | Allow customizing ignored folders and cleanup targets via config file.          |
-| Selective Archiving        | Allow users to choose which projects to archive.                                |
-| Restore Tool               | Restore archived projects back into full Unity project structure.               |
-| Logging System             | Save detailed logs for automation or CI workflows.                              |
-| Git Integration            | Detect Git repositories and optionally skip certain folders.                    |
-| Asset Statistics           | Show most common asset types across projects.                                   |
-| Duplicate Script Detection | Identify identical scripts across projects.                                     |
-| Cross-Platform Support     | Improve compatibility with macOS and Linux PowerShell environments.             |
+| Progress      | Feature                    | Description                                                                     |
+| ------------- | -------------------------- | ------------------------------------------------------------------------------- |
+| ---**-------- | Parallel Project Scanning  | Scan multiple Unity projects simultaneously to significantly improve speed.     |
+| *------------ | Asset Deduplication        | Detect identical assets across projects and store only one copy in the archive. |
+| *------------ | Interactive CLI Menu       | Arrow-key navigation with highlighted selections.                               |
+| *------------ | Live Progress Bars         | Real-time progress display when scanning or archiving projects.                 |
+| *------------ | Disk Usage Visualization   | Show graphical or color-coded disk usage statistics.                            |
+| *------------ | Archive Verification       | Verify integrity of created archives after compression.                         |
+| *------------ | Config File Support        | Allow customizing ignored folders and cleanup targets via config file.          |
+| *------------ | Selective Archiving        | Allow users to choose which projects to archive.                                |
+| *------------ | Restore Tool               | Restore archived projects back into full Unity project structure.               |
+| *------------ | Logging System             | Save detailed logs for automation or CI workflows.                              |
+| *------------ | Git Integration            | Detect Git repositories and optionally skip certain folders.                    |
+| *------------ | Asset Statistics           | Show most common asset types across projects.                                   |
+| *------------ | Duplicate Script Detection | Identify identical scripts across projects.                                     |
+| *------------ | Cross-Platform Support     | Improve compatibility with macOS and Linux PowerShell environments.             |
 
 ---
 
@@ -225,13 +225,3 @@ MIT License
 ## Contributing
 
 Contributions, suggestions, and improvements are welcome.
-
-```
-
----
-
-If you'd like, I can also help you add **two small files that make the repo look much more professional** on GitHub:
-
-- `.gitignore` optimized for this tool  
-- a **very nice repo banner / badge section** for the README (build status, PowerShell version, etc.).
-```
