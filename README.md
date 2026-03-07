@@ -1,5 +1,12 @@
 # UnityProjectsArchiveTool
 
+![PowerShell](https://img.shields.io/badge/PowerShell-5.1%2B%20%7C%207-blue?logo=powershell&logoColor=white)
+![Windows](https://img.shields.io/badge/platform-Windows-0078D6?logo=windows&logoColor=white)
+![Unity](https://img.shields.io/badge/Unity-Project%20Tool-000000?logo=unity)
+![License](https://img.shields.io/github/license/ShadowFleet33/Unity_Projects_Archive_Tool)
+![Repo Size](https://img.shields.io/github/repo-size/ShadowFleet33/Unity_Projects_Archive_Tool)
+![Last Commit](https://img.shields.io/github/last-commit/ShadowFleet33/Unity_Projects_Archive_Tool)
+
 A PowerShell CLI tool for managing multiple Unity projects in a single workspace.
 
 The tool helps maintain large collections of Unity projects by providing automated scanning, cleanup, script backups, and final asset archiving into compressed packages.
@@ -197,22 +204,22 @@ UnityProjectsArchiveTool/
 
 ## Possible Future Improvements
 
-| Progress      | Feature                    | Description                                                                     |
-| ------------- | -------------------------- | ------------------------------------------------------------------------------- |
-| ---**-------- | Parallel Project Scanning  | Scan multiple Unity projects simultaneously to significantly improve speed.     |
-| *------------ | Asset Deduplication        | Detect identical assets across projects and store only one copy in the archive. |
-| *------------ | Interactive CLI Menu       | Arrow-key navigation with highlighted selections.                               |
-| *------------ | Live Progress Bars         | Real-time progress display when scanning or archiving projects.                 |
-| *------------ | Disk Usage Visualization   | Show graphical or color-coded disk usage statistics.                            |
-| *------------ | Archive Verification       | Verify integrity of created archives after compression.                         |
-| *------------ | Config File Support        | Allow customizing ignored folders and cleanup targets via config file.          |
-| *------------ | Selective Archiving        | Allow users to choose which projects to archive.                                |
-| *------------ | Restore Tool               | Restore archived projects back into full Unity project structure.               |
-| *------------ | Logging System             | Save detailed logs for automation or CI workflows.                              |
-| *------------ | Git Integration            | Detect Git repositories and optionally skip certain folders.                    |
-| *------------ | Asset Statistics           | Show most common asset types across projects.                                   |
-| *------------ | Duplicate Script Detection | Identify identical scripts across projects.                                     |
-| *------------ | Cross-Platform Support     | Improve compatibility with macOS and Linux PowerShell environments.             |
+| Progress     | Feature                    | Description                                                                     |
+| ------------ | -------------------------- | ------------------------------------------------------------------------------- |
+| ---**------- | Parallel Project Scanning  | Scan multiple Unity projects simultaneously to significantly improve speed.     |
+| *----------- | Asset Deduplication        | Detect identical assets across projects and store only one copy in the archive. |
+| *----------- | Interactive CLI Menu       | Arrow-key navigation with highlighted selections.                               |
+| *----------- | Live Progress Bars         | Real-time progress display when scanning or archiving projects.                 |
+| *----------- | Disk Usage Visualization   | Show graphical or color-coded disk usage statistics.                            |
+| *----------- | Archive Verification       | Verify integrity of created archives after compression.                         |
+| *----------- | Config File Support        | Allow customizing ignored folders and cleanup targets via config file.          |
+| *----------- | Selective Archiving        | Allow users to choose which projects to archive.                                |
+| *----------- | Restore Tool               | Restore archived projects back into full Unity project structure.               |
+| *----------- | Logging System             | Save detailed logs for automation or CI workflows.                              |
+| *----------- | Git Integration            | Detect Git repositories and optionally skip certain folders.                    |
+| *----------- | Asset Statistics           | Show most common asset types across projects.                                   |
+| *----------- | Duplicate Script Detection | Identify identical scripts across projects.                                     |
+| *----------- | Cross-Platform Support     | Improve compatibility with macOS and Linux PowerShell environments.             |
 
 ---
 
