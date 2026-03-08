@@ -461,15 +461,20 @@ function New-FinalUnityAssetsArchive {
         "StreamingAssets"
     )
 
+    $sevenZip = "C:\Program Files\7-Zip\7z.exe"
+
+    if (!(Test-Path $sevenZip)) {
+        Write-Host "7-Zip not found at: $sevenZip" -ForegroundColor Red
+        Write-Host "Please install 7-Zip or update the path." -ForegroundColor Yellow
+        return
+    }
+
     $timestamp = Get-Date -Format "yyyy-MM-dd_HH-mm"
     $zipName = "UnityAssets_FinalArchive_$timestamp.zip"
     $zipPath = Join-Path $scriptDir $zipName
 
     Write-Host ""
-    Write-Host "Preparing archive..." -ForegroundColor Yellow
-
-    Add-Type -AssemblyName System.IO.Compression.FileSystem
-    $zip = [System.IO.Compression.ZipFile]::Open($zipPath, "Create")
+    Write-Host "Building archive using 7-Zip (multi-thread compression)..." -ForegroundColor Yellow
 
     $total = $projects.Count
     $i = 0
@@ -479,33 +484,36 @@ function New-FinalUnityAssetsArchive {
         $i++
         Show-ScanProgress $i $total $project.Name
 
-        $assetFolders = Get-ChildItem -Path $project.AssetsPath -Directory |
+        $assetsPath = $project.AssetsPath
+
+        $assetFolders = Get-ChildItem -Path $assetsPath -Directory |
         Where-Object { $excludedAssetFolders -notcontains $_.Name }
 
         foreach ($folder in $assetFolders) {
 
-            $files = Get-ChildItem $folder.FullName -Recurse -File
+            #$archiveTarget = "Assets\$($project.Name)\$($folder.Name)"
 
-            foreach ($file in $files) {
-
-                $relativePath = $file.FullName.Substring($project.AssetsPath.Length + 1)
-
-                $zipEntry = Join-Path "Assets" $project.Name
-                $zipEntry = Join-Path $zipEntry $relativePath
-
-                $zipEntry = $zipEntry.Replace("\", "/")
-
-                [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile(
-                    $zip,
-                    $file.FullName,
-                    $zipEntry,
-                    [System.IO.Compression.CompressionLevel]::Optimal
-                )
-            }
+            & $sevenZip a `
+                -tzip $zipPath `
+                "$($folder.FullName)\*" `
+                "-ir!$($folder.FullName)\*" `
+                "-mmt=on" `
+                "-mx=5" `
+                "-spf" `
+                "-w$scriptDir" `
+                "-bb0" `
+                "-bso0" `
+                "-bsp0" `
+                "-aoa" `
+                "-sdel" `
+                "-ssw" `
+                "-snh" `
+                "-snl" `
+                "-spe" `
+                "-i!$($folder.FullName)\*" `
+                "-x!$excludedAssetFolders"
         }
     }
-
-    $zip.Dispose()
 
     Write-Host ""
     Write-Host "Archive created:" -ForegroundColor Green
