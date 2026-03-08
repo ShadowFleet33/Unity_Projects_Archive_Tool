@@ -462,50 +462,54 @@ function New-FinalUnityAssetsArchive {
     )
 
     $timestamp = Get-Date -Format "yyyy-MM-dd_HH-mm"
-    $tempRoot = Join-Path $scriptDir "_TempMergedAssets"
-    $mergedAssets = Join-Path $tempRoot "Assets"
+    $zipName = "UnityAssets_FinalArchive_$timestamp.zip"
+    $zipPath = Join-Path $scriptDir $zipName
 
-    if (Test-Path $tempRoot) {
-        Remove-Item $tempRoot -Recurse -Force
-    }
+    Write-Host ""
+    Write-Host "Preparing archive..." -ForegroundColor Yellow
 
-    New-Item -ItemType Directory -Path $mergedAssets | Out-Null
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    $zip = [System.IO.Compression.ZipFile]::Open($zipPath, "Create")
+
     $total = $projects.Count
     $i = 0
+
     foreach ($project in $projects) {
 
         $i++
         Show-ScanProgress $i $total $project.Name
-        $projectAssetsDest = Join-Path $mergedAssets $project.Name
-        New-Item -ItemType Directory -Path $projectAssetsDest | Out-Null
 
         $assetFolders = Get-ChildItem -Path $project.AssetsPath -Directory |
         Where-Object { $excludedAssetFolders -notcontains $_.Name }
 
         foreach ($folder in $assetFolders) {
 
-            $dest = Join-Path $projectAssetsDest $folder.Name
+            $files = Get-ChildItem $folder.FullName -Recurse -File
 
-            Copy-Item $folder.FullName $dest -Recurse -Force
+            foreach ($file in $files) {
+
+                $relativePath = $file.FullName.Substring($project.AssetsPath.Length + 1)
+
+                $zipEntry = Join-Path "Assets" $project.Name
+                $zipEntry = Join-Path $zipEntry $relativePath
+
+                $zipEntry = $zipEntry.Replace("\", "/")
+
+                [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile(
+                    $zip,
+                    $file.FullName,
+                    $zipEntry,
+                    [System.IO.Compression.CompressionLevel]::Optimal
+                )
+            }
         }
     }
 
-    $zipName = "UnityAssets_FinalArchive_$timestamp.zip"
-    $zipPath = Join-Path $scriptDir $zipName
-
-    Write-Host ""
-    Write-Host "Compressing archive..." -ForegroundColor Yellow
-
-    Compress-Archive `
-        -Path $mergedAssets `
-        -DestinationPath $zipPath `
-        -CompressionLevel Optimal
+    $zip.Dispose()
 
     Write-Host ""
     Write-Host "Archive created:" -ForegroundColor Green
     Write-Host $zipPath -ForegroundColor Gray
-
-    Remove-Item $tempRoot -Recurse -Force
 
     Write-Host ""
     $confirm = (Read-Host "Delete ALL project folders? (yes/no)").ToLower()
