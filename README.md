@@ -22,6 +22,7 @@ It is designed for developers who maintain many prototype projects, experiments,
 ## Features
 
 ### Project Discovery
+
 Automatically detects Unity projects inside the tool directory.
 
 A folder is considered a Unity project if it contains an `Assets` directory.
@@ -29,6 +30,7 @@ A folder is considered a Unity project if it contains an `Assets` directory.
 ---
 
 ### Project Dashboard
+
 Shows an overview of detected projects including:
 
 - project name
@@ -40,6 +42,7 @@ Shows an overview of detected projects including:
 ---
 
 ### Project Scanning
+
 Scans all Unity projects and gathers statistics about:
 
 - scripts
@@ -50,9 +53,10 @@ Scans all Unity projects and gathers statistics about:
 ---
 
 ### Cleanup Tool
+
 Removes common Unity-generated folders to free disk space:
 
-```
+```txt
 
 Library
 Temp
@@ -67,11 +71,12 @@ This can reduce project size dramatically without affecting source assets.
 ---
 
 ### Script Backup
+
 Creates compressed backups of all `Assets/Scripts` folders.
 
 Backups are stored in:
 
-```
+```txt
 
 ScriptBackups/
 
@@ -82,11 +87,12 @@ Each project gets its own timestamped archive.
 ---
 
 ### Final Assets Archive
+
 Creates a final compressed archive containing the `Assets` folders of all projects.
 
 The archive structure:
 
-```
+```txt
 
 Assets/
 ProjectA/
@@ -97,7 +103,7 @@ ProjectC/
 
 Certain folders are skipped during archiving to reduce size:
 
-```
+```txt
 
 Plugins
 Extensions
@@ -113,9 +119,10 @@ After the archive is created, the tool can optionally delete the original projec
 ---
 
 ### Automatic Temp Cleanup
+
 On startup the tool automatically removes leftover temporary folders such as:
 
-```
+```txt
 
 TempBackup
 _TempMergedAssets
@@ -138,7 +145,7 @@ This ensures safe re-runs after interrupted operations.
 
 Place the script in the directory containing your Unity projects:
 
-```
+```txt
 
 Workspace/
 UnityProjectsArchiveTool.ps1
@@ -158,7 +165,7 @@ Run the script:
 
 ## Menu
 
-```
+```txt
 1 - Project Dashboard
 2 - Scan Projects
 3 - Cleanup Projects
@@ -175,7 +182,7 @@ Press **ESC** at any time to exit the tool.
 
 Typical project maintenance workflow:
 
-```
+```txt
 1 → View dashboard
 3 → Cleanup projects
 4 → Backup scripts
@@ -196,7 +203,7 @@ Deletion operations always require confirmation.
 
 ## Repository Structure
 
-```
+```txt
 UnityProjectsArchiveTool/
 │
 ├─ UnityProjectsArchiveTool.ps1
